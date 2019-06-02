@@ -84,12 +84,13 @@ public class MusicActivity extends Activity {
 
 
         list = new ArrayList<String>();   //音乐列表
-        File path = new File("/storage/emulated/0/data/music");
+        //File sdpath = new File("/storage/emulated/0");
+        File path = new File( "//data/music//");      //获得SD卡的mp3文件夹
+
         //返回以.mp3结尾的文件 (自定义文件过滤)
 
         songFiles = path.listFiles(new MyFilter(".mp3"));
         for (File file : songFiles) {
-            Log.i("my","sssssssssssssss"+song_path);
             list.add(file.getAbsolutePath());   //获取文件的绝对路径
         }
 
