@@ -1,10 +1,30 @@
 package com.example.music;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MusicActivity extends Activity {
 
@@ -48,7 +68,7 @@ public class MusicActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music);
+        setContentView(R.layout.activity_main);
         totalTV = findViewById(R.id.music_total_time);
         currentTV = findViewById(R.id.music_current_time);
         seekBar = (SeekBar) findViewById(R.id.music_seekbar);
@@ -61,24 +81,19 @@ public class MusicActivity extends Activity {
             return;
         }
 
-        //判断是否是AndroidN以及更高的版本 N=24
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            StrictMode.setVmPolicy(builder.build());
-        }
+
 
         list = new ArrayList<String>();   //音乐列表
-        File sdpath = Environment.getExternalStorageDirectory(); //获得手机SD卡路径
-        File path = new File(sdpath + "//mp3//");      //获得SD卡的mp3文件夹
+        File path = new File("/storage/emulated/0/data/music");
         //返回以.mp3结尾的文件 (自定义文件过滤)
+
         songFiles = path.listFiles(new MyFilter(".mp3"));
         for (File file : songFiles) {
+            Log.i("my","sssssssssssssss"+song_path);
             list.add(file.getAbsolutePath());   //获取文件的绝对路径
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MusicActivity.this,
-                android.R.layout.simple_list_item_single_choice,
-                list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MusicActivity.this,android.R.layout.simple_list_item_single_choice,list);
         ListView li = (ListView) findViewById(R.id.listView1);
         li.setAdapter(adapter);
         li.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
