@@ -23,6 +23,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
+//适配器类
 public class NoteAdapter extends BaseAdapter {
     
 	private Context mContext;
@@ -74,6 +76,7 @@ public class NoteAdapter extends BaseAdapter {
 	}
 	
     public static String getDateStr(long milliseconds) {
+		//返回保持的信息日期，用于显示
         return new SimpleDateFormat("yyyy年MM月dd日 EEEE HH点mm分",Locale.CHINA).format(milliseconds);
     }
 }

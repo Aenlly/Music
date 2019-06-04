@@ -35,6 +35,7 @@ import android.widget.TextView.BufferType;
 
 import com.example.music.markdown.MDReader;
 
+//保存的界面设置
 public class DisplayActivity extends Activity {
         
     private static final String DEFAULT_DIR = Environment.getExternalStorageDirectory() + File.separator + "JNote";
@@ -104,7 +105,7 @@ public class DisplayActivity extends Activity {
             return false;
         }
         if("".equals(mMDReader.getContent())) {
-            Toast.makeText(this, "没有内容,无法保存 !", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "没有内容,无法保存 !", Toast.LENGTH_LONG).show();//判断无内容则提示
             return false;
         }
         return true;

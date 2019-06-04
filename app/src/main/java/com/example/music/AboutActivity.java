@@ -63,15 +63,16 @@ public class AboutActivity extends Activity {
         }
         return "Unknow";
     }
-	
+
+    //关于信息
 	protected String getAboutAuthor() {
 	    StringBuilder builder = new StringBuilder();
         builder.append("# **关于软件:**\n\n");
         builder.append("- 版本号: " + getVersionDescription() + "\n\n");
         builder.append("# **关于作者:**\n\n");
-        builder.append("### 卢俊\n\n");
-        builder.append("- 联系方式: lujun.hust@gmail.com \n\n");
-        builder.append("- 个人网站: http://www.jhuster.com \n\n");        
+        builder.append("### 熊利\n\n");
+        builder.append("- 联系方式:450543242@qq.com \n\n");
+        builder.append(" \n\n");
         return builder.toString();
 	}
 }
